@@ -19,6 +19,9 @@
  ******************************************************************************/
 package org.avacodo.filebased
 
+import org.junit.Ignore
+
+@Ignore("just an example")
 class InvokeConverter{
 
 //	@Test

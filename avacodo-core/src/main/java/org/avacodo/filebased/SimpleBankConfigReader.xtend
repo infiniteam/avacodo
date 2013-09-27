@@ -20,8 +20,8 @@
 package org.avacodo.filebased
 
 import com.google.common.collect.ImmutableSet
-import com.google.common.io.Files
-import java.io.File
+import com.google.common.io.Resources
+import java.net.URL
 import java.nio.charset.Charset
 import java.util.List
 import java.util.Map
@@ -39,20 +39,20 @@ class SimpleBankConfigReader implements BankConfigRepository {
 
 	var private Map<Integer, BankConfig> theMap
 
-	new(File blzFile, Charset encoding){
+	new(URL blzFile, Charset encoding){
 		init(blzFile, encoding)
 	}
 
-	def private void init(File blzFile, Charset encoding){
-		init(Files::readLines(blzFile, encoding))
+	def private void init(URL blzFile, Charset encoding){
+		init(Resources::readLines(blzFile, encoding))
 		ensureInitialized
 		//allows transforming bankconfig file into a simplified version containing only the relevant data
-		if("simplifiedBLZ"!=Files::readFirstLine(blzFile, encoding)){
+		if("simplifiedBLZ"!=Resources::readLines(blzFile, encoding).get(0)){
 			writeSimplifiedBlz(blzFile,encoding)
 		}
 	}
 	
-	def private writeSimplifiedBlz(File file, Charset encoding) {
+	def private writeSimplifiedBlz(URL file, Charset encoding) {
 //		val simpFile=new File(file.absoluteFile.parent,"simplified_"+file.name)
 //		if(!simpFile.exists){
 //			val sorted=theMap.keySet.sort

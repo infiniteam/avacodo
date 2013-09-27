@@ -67,16 +67,13 @@ class SimpleCsvConverter implements LineProcessor<Void>{
 	}
 
 	new(){
-		val uri=this.class.classLoader.getResource("simplified_BLZ2_20130603.txt")
-		configs=new SimpleBankConfigReader(new File(uri.path), Charset::forName("ISO-8859-1"))
+		val url=this.class.classLoader.getResource("simplified_BLZ2_20130603.txt")
+		configs=new SimpleBankConfigReader(url, Charset::forName("ISO-8859-1"))
 		calc=new RuleBasedIbanCalculator(configs)
 	}
 
 	private new(File outputFile, Charset encoding, int blzIddex, int kontoIndex){
 		this()
-		val uri=this.class.classLoader.getResource("simplified_BLZ2_20130603.txt")
-		configs=new SimpleBankConfigReader(new File(uri.path), Charset::forName("ISO-8859-1"))
-		calc=new RuleBasedIbanCalculator(configs)
 		out=outputFile;
 		enc=encoding
 		indexBlz=blzIddex

@@ -19,15 +19,13 @@
  ******************************************************************************/
 package org.avacodo.filebased
 
-import java.io.File
 import java.nio.charset.Charset
-import org.avacodo.filebased.SimpleBankConfigReader
 import org.avacodo.model.UnknownBankCodeException
 
 describe SimpleBankConfigReader {
 
 	static SimpleBankConfigReader subject=new SimpleBankConfigReader(
-		new File("src/test/resources/BLZ2_20130603.txt"), Charset::forName("ISO-8859-1")
+		typeof(SimpleBankConfigReader).classLoader.getResource("BLZ2_20130603.txt"), Charset::forName("ISO-8859-1")
 	)
 
 	facts "10120760"{

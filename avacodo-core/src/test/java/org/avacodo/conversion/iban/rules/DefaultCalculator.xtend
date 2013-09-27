@@ -19,12 +19,11 @@
  ******************************************************************************/
 package org.avacodo.conversion.iban.rules
 
-import java.io.File
 import java.nio.charset.Charset
 import org.avacodo.filebased.SimpleBankConfigReader
 
 class DefaultCalculator {
 
 	public static RuleBasedIbanCalculator INSTANCE=new RuleBasedIbanCalculator(new SimpleBankConfigReader(
-		new File("src/test/resources/BLZ2_20130603.txt"), Charset::forName("ISO-8859-1")))
+		typeof(DefaultCalculator).classLoader.getResource("BLZ2_20130603.txt"), Charset::forName("ISO-8859-1")))
 }
