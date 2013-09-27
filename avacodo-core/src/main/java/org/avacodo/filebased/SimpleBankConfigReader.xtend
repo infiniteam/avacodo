@@ -48,11 +48,13 @@ class SimpleBankConfigReader implements BankConfigRepository {
 		ensureInitialized
 		//allows transforming bankconfig file into a simplified version containing only the relevant data
 		if("simplifiedBLZ"!=Resources::readLines(blzFile, encoding).get(0)){
-			writeSimplifiedBlz(blzFile,encoding)
+//			writeSimplifiedBlz(blzFile,encoding)
 		}
 	}
-	
-	def private writeSimplifiedBlz(URL file, Charset encoding) {
+
+//	def private writeSimplifiedBlz(URL url, Charset encoding) {
+//		val file=new File(url.file)
+//		println(file.absolutePath + " "+file.exists)
 //		val simpFile=new File(file.absoluteFile.parent,"simplified_"+file.name)
 //		if(!simpFile.exists){
 //			val sorted=theMap.keySet.sort
@@ -63,8 +65,8 @@ class SimpleBankConfigReader implements BankConfigRepository {
 //				«ENDFOR»
 //			''',simpFile, encoding)
 //		} 
-	}
-
+//	}
+//
 //	def private simplified(BankConfig c)'''
 //		«c.accountCheckMethod»;«c.ibanRule»«Strings::padStart(c.ibanRuleVersion.toString,2,'0')»;«c.deletionAnnounced»;«c.bic»;«Optional::fromNullable(c.succeedingBlz).or(0)»
 //	'''

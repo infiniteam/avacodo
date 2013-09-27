@@ -38,11 +38,11 @@
 			<artifactId>org.eclipse.xtend.lib</artifactId>
 			<version>${xtend.version}</version>
 		</dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.jnario</groupId>
 			<artifactId>org.jnario.lib.maven</artifactId>
 			<version>${jnario.version}</version>
-		</dependency>
+		</dependency-->
 		<dependency>
 				<groupId>org.jnario</groupId>
 				<artifactId>org.jnario.lib.maven</artifactId>

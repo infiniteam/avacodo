@@ -25,14 +25,14 @@ import org.avacodo.model.UnknownBankCodeException
 describe SimpleBankConfigReader {
 
 	static SimpleBankConfigReader subject=new SimpleBankConfigReader(
-		typeof(SimpleBankConfigReader).classLoader.getResource("BLZ2_20130603.txt"), Charset::forName("ISO-8859-1")
+		typeof(SimpleBankConfigReader).classLoader.getResource("BLZ2_20130909.txt"), Charset::forName("ISO-8859-1")
 	)
 
 	facts "10120760"{
 		val it =subject.getBankConfig(10120760)
 		accountCheckMethod should be "99"
 		ibanRule should be 31
-		ibanRuleVersion should be 0
+		ibanRuleVersion should be 1
 		deletionAnnounced should be true
 		succeedingBlz should be 10020890
 		bic should be "HYVEDEM1079"

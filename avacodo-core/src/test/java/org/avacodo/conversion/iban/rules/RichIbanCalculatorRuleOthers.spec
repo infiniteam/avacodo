@@ -19,14 +19,11 @@
  ******************************************************************************/
 package org.avacodo.conversion.iban.rules
 
-import org.avacodo.conversion.iban.IbanAmbiguousException
 import org.avacodo.model.LegacyAccount
+import org.avacodo.model.UnknownBankCodeException
 import org.avacodo.validation.account.AccountValidationException
 
-import static org.junit.Assert.*
-
 import static extension org.avacodo.conversion.iban.rules.DoubleChecker.*
-import org.avacodo.model.UnknownBankCodeException
 
 /**
  * if not stated otherwise test cases here are checked against http://www.ckonto.de/
@@ -59,17 +56,21 @@ describe RuleBasedIbanCalculator "Others"{
 	fact bic(500_700_10,9999) should be "DEUTDEFFXXX"
 	fact iban(700_700_10, 3500022) should be "DE86700700100350002200"
 	fact bic(700_700_10,3500022) should be "DEUTDEMMXXX"
-	fact "ambiguous rule 20"{
-		try{
-			iban(50070010,5719083)
-			fail
-		}catch(IbanAmbiguousException e){
-			e.iban.iban should endWith "0005719083"
-			e.iban.bic should be "DEUTDEFFXXX"
-			e.iban2.iban should endWith "0571908300"
-			e.iban2.bic should be "DEUTDEFFXXX"
-		}
-	}
+
+	fact iban(50070010,5719083) should endWith "0571908300"
+	fact bic(50070010,5719083) should be "DEUTDEFFXXX"
+
+//with version 1 this ambiguity was removed
+//	fact "ambiguous rule 20"{
+//		try{
+//			iban(50070010,5719083)
+//			fail
+//		}catch(IbanAmbiguousException e){
+//			e.iban.iban should endWith "0005719083"
+//			e.iban2.iban should endWith "0571908300"
+//			e.iban2.bic should be "DEUTDEFFXXX"
+//		}
+//	}
 
 	//Rule 25 
 	fact iban(614_501_91,2777939) should be "DE81600501010002777939"
