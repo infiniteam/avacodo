@@ -69,6 +69,9 @@
 							<fileset>
 								<directory>${basedir}/src/main/xtend-gen</directory>
 							</fileset>
+							<fileset>
+								<directory>${basedir}/src/test/xtend-gen</directory>
+							</fileset>
 						</filesets>
 					</configuration>
 				</plugin>

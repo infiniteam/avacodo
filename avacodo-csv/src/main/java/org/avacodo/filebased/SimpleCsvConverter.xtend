@@ -30,6 +30,9 @@ import org.avacodo.conversion.iban.rules.RuleBasedIbanCalculator
 import org.avacodo.model.LegacyAccount
 import org.avacodo.model.UnknownBankCodeException
 import org.avacodo.validation.account.AccountValidationException
+import com.google.common.base.Charsets
+import java.io.FileNotFoundException
+import java.nio.charset.UnsupportedCharsetException
 
 /**
  * very simple converter taking a csv file (separator ; no string escaping) appending 3 fields iban, bic, conversion/error message
@@ -51,33 +54,68 @@ class SimpleCsvConverter implements LineProcessor<Void>{
 	private Charset enc
 	private int indexBlz
 	private int indexKonto
+	private String sep
 
 	def static void main(String[] args) {
-		val fileNameFrom=args.get(0)
-		val encoding=Charset::forName(args.get(1))
-		val blzIndex=Integer::parseInt(args.get(2))-1
-		val kontoIndex=Integer::parseInt(args.get(3))-1
-		val fileNameTo=args.get(4)
+		val extension parsed=parse(args)
+		fileTo.delete
+		Files::touch(fileTo)
+		Files::readLines(
+			file, 
+			encoding, 
+			new SimpleCsvConverter(fileTo, encoding, blzIndex, kontoIndex, separator)
+		)
+	}
+	def private static parse(String[] args){
+		try{
+			new CsvArgs(args)
+		}catch(FileNotFoundException e){
+			handleException(e)
+		}catch(IllegalArgumentException e){
+			handleException(e)
+		}catch(UnsupportedCharsetException e){
+			handleException(e)
+		}
+	}
 
-		val File result=new File(fileNameTo)
-		result.delete
-		Files::touch(result)
-		val File source=new File(fileNameFrom)
-		Files::readLines(source, encoding, new SimpleCsvConverter(result, encoding, blzIndex, kontoIndex))
+	def private static handleException(Exception e){
+		System.err.println('''
+			Error processing command line parameters: «e.message»
+
+			Usage:
+			[-i] <file to be converted> (--input)
+			[-e <encoding of the file>] (--encoding)
+			[-s <colum separator>] (--separator)
+			[-b <column containing the bank code>] (--bankcode)
+			[-a <column containing the account number>] (--account)
+			
+			Parameter Example:
+			
+			test.csv
+			-i temp/test.csv --encoding UTF-8 -a 3 -s ,
+			test.csv -bankcode 1 -o result.csv
+
+			General information:
+			We can only process csv files without string escaping, i.e. columns may not contain the separator.
+			The default separator is semicolon (;).
+			Column count starts with 1.
+		''')
+		System.exit(1)
 	}
 
 	new(){
 		val url=this.class.classLoader.getResource("simplified_BLZ2_20130909.txt")
-		configs=new SimpleBankConfigReader(url, Charset::forName("ISO-8859-1"))
+		configs=new SimpleBankConfigReader(url, Charsets.ISO_8859_1)
 		calc=new RuleBasedIbanCalculator(configs)
 	}
 
-	private new(File outputFile, Charset encoding, int blzIddex, int kontoIndex){
+	private new(File outputFile, Charset encoding, int blzIddex, int kontoIndex, String separator){
 		this()
-		out=outputFile;
+		out=outputFile
 		enc=encoding
 		indexBlz=blzIddex
 		indexKonto=kontoIndex
+		sep=separator
 	}
 	override getResult() {
 		return null
@@ -89,26 +127,26 @@ class SimpleCsvConverter implements LineProcessor<Void>{
 	}
 	override processLine(String it) throws IOException {
 		if(first){
-			Files::append('''«it»;IBAN;BIC;message/error''',out, enc)
-			first=false;
+			Files::append('''«it»«sep»IBAN«sep»BIC«sep»message/error''',out, enc)
+			first=false
 		}else{
-			val split=split(";")
+			val split=split(sep)
 			var LegacyAccount account
 			try{
 				account=new LegacyAccount(split.get(indexBlz),split.get(indexKonto))
 				val iban=account.result
-				append('''«it»;«iban.iban»;«iban.bic»;''')
+				append('''«it»«sep»«iban.iban»«sep»«iban.bic»«sep»''')
 			} catch(UnknownBankCodeException e){
-				append('''«it»;;;BANK CODE NOT KNOWN''')
+				append('''«it»«sep»«sep»«sep»BANK CODE NOT KNOWN''')
 			} catch(AccountValidationException e){
 				val config=configs.getBankConfig(account.bankCode)
-				append('''«it»;;;ERROR VALIDATING ACCOUNT - CHECK METHOD «config.accountCheckMethod»''')
+				append('''«it»«sep»«sep»«sep»ERROR VALIDATING ACCOUNT - CHECK METHOD «config.accountCheckMethod»''')
 			} catch(IbanAmbiguousException e){
-				append('''«it»;«e.iban.iban»;«e.iban.bic»;AMBIGUOUS IBAN!! («e.iban2.iban» «e.iban2.bic»»)''')
+				append('''«it»«sep»«e.iban.iban»«sep»«e.iban.bic»«sep»AMBIGUOUS IBAN!! («e.iban2.iban» «e.iban2.bic»»)''')
 			} catch(IbanUncertainException e){
-				append('''«it»;«e.iban.iban»;«e.iban.bic»;IBAN NOT CERTAIN!!''')
+				append('''«it»«sep»«e.iban.iban»«sep»«e.iban.bic»«sep»IBAN NOT CERTAIN!!''')
 			}catch(Exception e){
-				append('''«it»;;;«e.message»''')
+				append('''«it»«sep»«sep»«sep»«e.message»''')
 			}
 		}
 		true
