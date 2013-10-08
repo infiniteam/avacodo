@@ -3644,6 +3644,24 @@ public class BankAccountValidatorTest {
         Assert.assertFalse( BankAccountValidator.checkAccountNumber( 1234769013, "E0" ) );
         Assert.assertFalse( BankAccountValidator.checkAccountNumber( 2710014, "E0" ) );
         Assert.assertFalse( BankAccountValidator.checkAccountNumber( 9741015011L, "E0" ) );
-    }
+	}
+
+	@Test
+	public void testMethodE1() {
+		// test numbers from documentation
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(134211909, "E1"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(100041104, "E1"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(100054106, "E1"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(200025107, "E1"));
+
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(150013107, "E1"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(200035101, "E1"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(81313890, "E1"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(4268550840L, "E1"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(987402008, "E1"));
+		
+		// others
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(81403890, "E1"));
+	}
 
 }

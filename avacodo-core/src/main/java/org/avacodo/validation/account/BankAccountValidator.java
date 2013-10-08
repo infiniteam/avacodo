@@ -548,6 +548,8 @@ class BankAccountValidator {
                     return checkMethodD9( accountDigits, accountLength );
                 case 0xE0:
                     return checkMethodE0( accountDigits, accountLength );
+                case 0xE1:
+                   return checkMethodE1( accountDigits, accountLength );
                 default: throw new NumberFormatException();
             }
         } catch( NumberFormatException nfe ) {
@@ -3157,5 +3159,26 @@ class BankAccountValidator {
      */
     private static boolean checkMethodE0( int accountDigits[], int accountLength ) {
         return checkMethod00Alike( accountDigits, 1, accountLength, 7 );
-    }
+	}
+
+	/*
+	 * valid from December 9, 2013
+	 */
+	private static boolean checkMethodE1(final int accountDigits[], final int accountLength) {
+		if (accountLength != 9) {
+			return false;
+		}
+
+		int sum = 432; // 48 * 9, constant term for leading 0
+		int factor[] = { 1, 2, 3, 4, 5, 6, 11, 10 };
+
+		for (int ix = 1; ix < 9; ix++) {
+			// replace digit with ASCII code 0 -> 48, 1 -> 49, ...
+			sum += (accountDigits[ix] + 48) * factor[ix - 1];
+		}
+
+		// last digit of account number must be sum modulo 11         
+		return (sum % 11) == accountDigits[0];
+	}
+
 }
