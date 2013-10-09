@@ -4,14 +4,23 @@
 	<groupId>org.avacodo</groupId>
 	<artifactId>avacodo-csv</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Avacodo Csv</name>
+	<packaging>jar</packaging>	
+	<name>Avacodo CSV</name>
 	<description>simple standalone csv converter</description>
+	<url>http://avacodo.org</url>	
 	<licenses>
 		<license>
 			<name>GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1, February 1999</name>
 			<url>http://www.gnu.org/licenses/lgpl-2.1.html</url>
 		</license>
 	</licenses>
+	<scm>
+		<url>https://github.com/infiniteam/avacodo</url>
+		<connection>scm:git:https://github.com/infiniteam/avacodo.git</connection>
+	</scm>
+	<developers>
+		<developer>Alexander Nittka</developer>
+	</developers>	
 	<properties>
 		<avacodo.version>0.0.1-SNAPSHOT</avacodo.version>
 		<xtend.version>2.4.2</xtend.version>

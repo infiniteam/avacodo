@@ -4,14 +4,23 @@
 	<groupId>org.avacodo</groupId>
 	<artifactId>avacodo-core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>Avacodo</name>
 	<description>account validation and conversion for German bank accounts</description>
+	<url>http://avacodo.org</url>
 	<licenses>
 		<license>
 			<name>GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1, February 1999</name>
 			<url>http://www.gnu.org/licenses/lgpl-2.1.html</url>
 		</license>
 	</licenses>
+	<scm>
+		<url>https://github.com/infiniteam/avacodo</url>
+		<connection>scm:git:https://github.com/infiniteam/avacodo.git</connection>
+	</scm>
+	<developers>
+		<developer>Alexander Nittka</developer>
+	</developers>
 	<properties>
 		<xtend.version>2.4.2</xtend.version>
 		<jnario.version>0.5.1</jnario.version>
