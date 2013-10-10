@@ -20,7 +20,6 @@
 package org.avacodo.filebased
 
 import com.google.common.base.Charsets
-import com.google.common.base.Optional
 import com.google.common.io.Files
 import com.google.common.io.LineProcessor
 import java.io.File
@@ -195,7 +194,9 @@ class Counter implements LineProcessor<Pair<Integer,Integer>>{
 	var int count=0
 
 	override getResult() {
-		Optional.fromNullable(blz).or(getBlz)->Optional.fromNullable(account).or(getAccount)
+		val blzIndex=if(blz!==null)blz else getBlz
+		val accountIndex=if(account!==null)account else getAccount
+		blzIndex->accountIndex
 	}
 	
 	override processLine(String line) throws IOException {
