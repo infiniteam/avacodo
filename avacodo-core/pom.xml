@@ -19,7 +19,9 @@
 		<connection>scm:git:https://github.com/infiniteam/avacodo.git</connection>
 	</scm>
 	<developers>
-		<developer>Alexander Nittka</developer>
+		<developer>
+			<name>Alexander Nittka</name>
+		</developer>
 	</developers>
 	<properties>
 		<xtend.version>2.4.2</xtend.version>
