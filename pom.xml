@@ -1,14 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>org.avacodo</groupId>
 	<artifactId>avacodo-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<packaging>pom</packaging>
 
 	<name>Avacodo Parent</name>
+	<organization>
+		<name>infiniteam</name>
+		<url>https://github.com/infiniteam</url>
+	</organization>
 	<inceptionYear>2013</inceptionYear>
 	<url>http://avacodo.org</url>
 
@@ -29,7 +33,7 @@
 			<name>Alexander Nittka</name>
 		</developer>
 	</developers>
-	
+
 	<contributors>
 		<contributor>
 			<name>Stefan Oehme</name>
@@ -156,37 +160,6 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>com.mycila</groupId>
-					<artifactId>license-maven-plugin</artifactId>
-					<version>2.5</version>
-					<configuration>
-						<header>com/mycila/maven/plugin/license/templates/LGPL-3.txt</header>
-						<properties>
-							<owner>infiniteam</owner>
-							<year>${project.inceptionYear}</year>
-						</properties>
-						<excludes>
-							<exclude>**/README</exclude>
-							<exclude>**/LICENSE</exclude>
-							<exclude>src/test/resources/**</exclude>
-							<exclude>src/main/resources/**</exclude>
-							<exclude>**/xtend-gen/**</exclude>
-						</excludes>
-						<mapping>
-							<xtend>JAVADOC_STYLE</xtend>
-							<spec>JAVADOC_STYLE</spec>
-						</mapping>
-						<failIfMissing>false</failIfMissing>
-					</configuration>
-					<executions>
-						<execution>
-							<goals>
-								<goal>check</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>2.9.1</version>
@@ -217,6 +190,68 @@
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>2.4</version>
 				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>1.5</version>
+					<configuration>
+						<roots>
+							<root>src/main/java</root>
+							<root>src/test/java</root>
+						</roots>
+						<extraExtensions>
+							<xtend>java</xtend>
+							<spec>java</spec>
+						</extraExtensions>
+						<licenseName>lgpl_v2_1</licenseName>
+						<canUpdateCopyright>true</canUpdateCopyright>
+						<addJavaLicenseAfterPackage>
+							<!-- Setting this to true breaks JNario sources -->
+							false
+						</addJavaLicenseAfterPackage>
+					</configuration>
+					<executions>
+						<execution>
+							<id>update-license-headers</id>
+							<goals>
+								<goal>update-file-header</goal>
+							</goals>
+							<phase>process-sources</phase>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											license-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.5,)
+										</versionRange>
+										<goals>
+											<goal>
+												update-file-header
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
@@ -230,7 +265,7 @@
 				<artifactId>jnario-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>com.mycila</groupId>
+				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
