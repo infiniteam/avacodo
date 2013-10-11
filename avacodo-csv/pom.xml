@@ -1,127 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.avacodo</groupId>
+	<parent>
+		<groupId>org.avacodo</groupId>
+		<artifactId>avacodo-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 	<artifactId>avacodo-csv</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>	
+	<packaging>jar</packaging>
+
 	<name>Avacodo CSV</name>
-	<description>simple standalone csv converter</description>
-	<url>http://avacodo.org</url>	
-	<licenses>
-		<license>
-			<name>GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1, February 1999</name>
-			<url>http://www.gnu.org/licenses/lgpl-2.1.html</url>
-		</license>
-	</licenses>
-	<scm>
-		<url>https://github.com/infiniteam/avacodo</url>
-		<connection>scm:git:https://github.com/infiniteam/avacodo.git</connection>
-	</scm>
-	<developers>
-		<developer>
-			<name>Alexander Nittka</name>
-		</developer>
-	</developers>	
-	<properties>
-		<avacodo.version>0.0.1-SNAPSHOT</avacodo.version>
-		<xtend.version>2.4.2</xtend.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	<description>Simple standalone csv converter</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.avacodo</groupId>
 			<artifactId>avacodo-core</artifactId>
-			<version>${avacodo.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.xtext</groupId>
-			<artifactId>org.eclipse.xtext.xbase.lib</artifactId>
-			<version>${xtend.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.xtend</groupId>
-			<artifactId>org.eclipse.xtend.lib</artifactId>
-			<version>${xtend.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>14.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-plugin-api</artifactId>
-			<version>3.0</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 
-
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.5</version>
-					<configuration>
-						<filesets>
-							<fileset>
-								<directory>${basedir}/src/main/xtend-gen</directory>
-							</fileset>
-							<fileset>
-								<directory>${basedir}/src/test/xtend-gen</directory>
-							</fileset>
-						</filesets>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.eclipse.xtend</groupId>
-					<artifactId>xtend-maven-plugin</artifactId>
-					<version>${xtend.version}</version>
-					<executions>
-						<execution>
-							<id>default-compile</id>
-							<phase>generate-sources</phase>
-							<goals>
-								<goal>compile</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<outputDirectory>${basedir}/src/main/xtend-gen</outputDirectory>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
-			<plugin>
-				<groupId>org.eclipse.xtend</groupId>
-				<artifactId>xtend-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<showWarnings>true</showWarnings>
-					<showDeprecation>true</showDeprecation>
-					<compilerArgument>-Xlint:all</compilerArgument>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>

@@ -1,9 +1,5 @@
-*.class
-.DS_Store
-bin/
+.classpath
+.project
+.settings/
 target/
 xtend-gen/
-# Package Files #
-*.jar
-*.war
-*.ear
