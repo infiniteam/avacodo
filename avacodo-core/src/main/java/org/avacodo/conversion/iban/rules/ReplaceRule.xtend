@@ -34,7 +34,7 @@ abstract package class ReplaceRule extends Rule {
 	}
 
 	def protected static final toAccountAccountMap(CharSequence s){
-		newImmutableMap(s.toString.trim.split("\n").map[
+		newImmutableMap(s.toString.trim.split(NL).map[
 			val sp=it.split(" ")
 			Long::parseLong(sp.get(0).trim)->Long::parseLong(sp.get(1).trim)
 		])

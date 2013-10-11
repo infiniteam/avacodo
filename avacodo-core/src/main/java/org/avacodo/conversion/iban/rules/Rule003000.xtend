@@ -54,7 +54,7 @@ package class Rule003000 extends Rule {
 
 	
 	def static private asLongSet(CharSequence sequence) {
-		sequence.toString.split("\n").map[split(' ').toList].flatten.map[Long::parseLong(it.trim)].toSet
+		sequence.toString.split(NL).map[split(' ').toList].flatten.map[Long::parseLong(it.trim)].toSet
 	}
 	
 	override applyTo(RichIbanResult result, BankConfig config, LocalDate date) {

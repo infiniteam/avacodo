@@ -527,7 +527,7 @@ class HypoReplacer {
 			723 78020429 7230000000 7239999999 77320072
 			733 86020880 7330000000 7339999999 83020087
 			798 70020001 7980000000 7989999999 70020270
-		'''.toString.split("\n").forEach[
+		'''.toString.split("[\\r\\n]+").forEach[
 			val all=trim
 			val spl=all.split(" ")
 			val kreis=spl.get(0).parseInt

@@ -76,7 +76,7 @@ package class Rule005300 extends Rule {
 		86050000 3535 7461505611
 		86050000 2020 7461500018
 		86050000 4394 7461505714
-	'''.toString.split("\n").map[
+	'''.toString.split(NL).map[
 			val sp=split(" ")
 			(sp.get(0).parseInt->sp.get(1).parseLong)->sp.get(2).parseLong
 		]

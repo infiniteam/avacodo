@@ -62,7 +62,7 @@ describe Rule003900 {
 		285 200 09
 		285 215 18
 		291 217 31
-	'''.toString.split("\n").map[Integer::parseInt(it.replaceAll(" ",""))].toList
+	'''.toString.split("[\\r\\n]+").map[Integer::parseInt(it.replaceAll(" ",""))].toList
 
 	facts "blz replaced"{
 		examples.forEach[

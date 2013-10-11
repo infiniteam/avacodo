@@ -145,7 +145,7 @@ package class Rule003900 extends ReplaceRule {
 		285 200 09
 		285 215 18
 		291 217 31
-	'''.toString.split("\n").map[Integer::parseInt(it.replaceAll(" ",""))].toSet
+	'''.toString.split(NL).map[Integer::parseInt(it.replaceAll(" ",""))].toSet
 
 	override replace(RichIbanResult it) {
 		if(replace.contains(account.bankCode)){

@@ -58,7 +58,7 @@ describe Rule003000 {
 		9990001100 9990002000 9990004002 9991020001 9991040002
 		9991060003 9999999993 9999999994 9999999995 9999999996
 		9999999997 9999999998 9999999999
-	'''.toString.split("\n").map[split(' ').toList].flatten.map[Long::parseLong(it.trim)].toList
+	'''.toString.split("[\\r\\n]+").map[split(' ').toList].flatten.map[Long::parseLong(it.trim)].toList
 
 	facts "all can be converted"{
 		examples.forEach[

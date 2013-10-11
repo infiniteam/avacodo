@@ -28,6 +28,8 @@ import org.avacodo.validation.account.AccountValidator
 import org.joda.time.LocalDate
 
 abstract package class Rule {
+	
+	protected static final String NL="[\\r\\n]+";
 
 	private static final AccountValidator defaultValidator=AccountValidator::defImpl
 	

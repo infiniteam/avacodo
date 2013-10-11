@@ -62,7 +62,7 @@ package class Rule000500 extends Rule {
 		24080000 36580072 51080000 62280012 74380007
 		24180001 40080040 51380040 63080015 75080003
 		25480021 41280043 52080080 64080014 76080053
-	'''.toString.split("\n").map[split(" ").toList].flatten.map[parseInt].toSet
+	'''.toString.split(NL).map[split(" ").toList].flatten.map[parseInt].toSet
 
 	val private static final Map<Pair<Integer,Long>,Long> donationMap=newImmutableMap(
 			'''
@@ -162,7 +162,7 @@ package class Rule000500 extends Rule {
 		70040041 0400500500 0004005005
 		60080000 0500500500 0901581400
 		60040071 0500500500 0005127006
-	'''.toString.split("\n").map[
+	'''.toString.split(NL).map[
 			val sp=split(" ")
 			(sp.get(0).parseInt->sp.get(1).parseLong)->sp.get(2).parseLong
 		]
