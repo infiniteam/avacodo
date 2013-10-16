@@ -34,6 +34,7 @@
 	<scm>
 		<url>https://github.com/infiniteam/avacodo</url>
 		<connection>scm:git:https://github.com/infiniteam/avacodo.git</connection>
+    <developerConnection>scm:git:https://github.com/infiniteam/avacodo.git</developerConnection>
 	</scm>
 
 	<developers>
@@ -233,7 +234,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>2.4.1</version>
+					<version>2.3.2</version>
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 					</configuration>
