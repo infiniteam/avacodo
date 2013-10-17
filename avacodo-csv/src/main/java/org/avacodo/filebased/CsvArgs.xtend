@@ -127,22 +127,22 @@ class CsvArgs{
 	}
 
 	def void initIndexes(Map<String,String> args){
-		if(args.get("a")!=null){
+		if(args.get("a")!==null){
 			indexKonto=Integer.parseInt(args.get("a"))-1
 		}
-		if(args.get("b")!=null){
+		if(args.get("b")!==null){
 			indexBlz=Integer.parseInt(args.get("b"))-1
 		}
 	}
 
 	def void initEncoding(Map<String,String> args){
-		if(args.get("e")!=null){
+		if(args.get("e")!==null){
 			enc=Charset.forName(args.get("e"))
 		}
 	}
 
 	def void initSeparator(Map<String,String> args){
-		if(args.get("s")!=null){
+		if(args.get("s")!==null){
 			sep=args.get("s")
 		}else{
 			sep=";"
@@ -158,7 +158,7 @@ class CsvArgs{
 		if(!file.exists){
 			throw new FileNotFoundException("file not found "+ fileName)
 		}
-		if(args.get("o")!=null){
+		if(args.get("o")!==null){
 			fileTo=new File(args.get("o")).absoluteFile
 		}else{
 			fileTo=new File(file.absoluteFile.parentFile, file.name+"_converted")
@@ -221,10 +221,10 @@ class Counter implements LineProcessor<Pair<Integer,Integer>>{
 
 	def private void check(int blzIndex, Iterable<Integer> accountCandidates, String[] split){
 		//if blz index is specified use only that index!
-		if(blz==null || blz==blzIndex){
+		if(blz===null || blz==blzIndex){
 			accountCandidates.forEach[
 				//if account index is specified use only that index!!
-				if(account==null || (account==it && it!=blzIndex)){
+				if(account===null || (account==it && it!=blzIndex)){
 					try{
 						val testacc=new LegacyAccount(split.get(blzIndex), split.get(it))
 						calc.getIban(testacc)
