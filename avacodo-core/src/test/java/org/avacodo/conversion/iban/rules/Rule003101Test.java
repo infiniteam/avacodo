@@ -32,6 +32,6 @@ public class Rule003101Test extends Rule003100Spec {
 
 	@Before
 	public void initSubject() {
-		subject = new Rule003100();
+		subject = new Rule003101();
 	}
 }

@@ -32,7 +32,7 @@ public class Rule003501Test extends Rule003500Spec {
 
 	@Before
 	public void initSubject() {
-		subject = new Rule003500();
+		subject = new Rule003501();
 	}
 
 }
