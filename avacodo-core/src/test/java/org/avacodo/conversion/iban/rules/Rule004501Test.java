@@ -19,32 +19,19 @@
  * <http://www.gnu.org/licenses/lgpl-2.1.html>.
  * #L%
  */
-package org.avacodo.conversion.iban.rules
+package org.avacodo.conversion.iban.rules;
 
-import org.avacodo.conversion.iban.rules.ReplaceRule
-import java.util.Map
+import org.jnario.runner.*;
+import org.junit.*;
+import org.junit.runner.*;
+import org.junit.runners.*;
 
-package class Rule001500 extends ReplaceRule {
+@Named("Rule004501")
+@RunWith(JUnit4.class)
+public class Rule004501Test extends Rule004500Spec {
 
-	// account number 94 added due to errata email from 2013-08-01
-	private static final Map<Long,Long> replace='''
-		94 3008888018
-		556 0000101010
-		888 0031870011
-		4040 4003600101
-		5826 1015826017
-		25000 0025000110
-		393393 0033013019
-		444555 0032230016
-		603060 6002919018
-		2120041 0002130041
-		80868086 4007375013
-		400569017 4000569017		
-	'''.toAccountAccountMap
-
-	override replace(RichIbanResult it) {
-		if(account.bankCode==37060193){
-			defaultAccountReplace(replace)
-		}
+	@Before
+	public void before() throws Exception {
+		this.subject = new Rule004501();
 	}
 }

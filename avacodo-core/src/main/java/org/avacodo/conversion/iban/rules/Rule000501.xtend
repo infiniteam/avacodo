@@ -24,7 +24,6 @@ package org.avacodo.conversion.iban.rules
 import static extension java.lang.Integer.*;
 import static extension java.lang.Long.*;
 
-import org.avacodo.conversion.iban.rules.Rule000500
 import java.util.Map
 
 package class Rule000501 extends Rule000500 {
@@ -155,15 +154,15 @@ package class Rule000501 extends Rule000500 {
 		]
 	)
 
-	override def package bankCode522(){
+	override package bankCode522(){
 		blzExclusion522
 	}
 		
-	override def package excluded53(int blz){
+	override package excluded53(int blz){
 		blz==50040033
 	}
 	
-	override def package donation() {
+	override package donation() {
 		donationMap
 	}
 }

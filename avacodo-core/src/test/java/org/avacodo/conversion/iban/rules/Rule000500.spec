@@ -164,6 +164,12 @@ describe Rule000500 {
 	fact ibanDoubleCheck(50040000, 101010) should be "DE46500400000311011100"
 	fact bic(50040000, 101010) should be "COBADEFFXXX"
 
+	// donation account numbers; 7 digit account number in donation map is converted to 9 digit
+	// account number during IBAN calculation
+	fact ibanDoubleCheck(55040022, 555) should be "DE81550400220211050000"
+	fact ibanDoubleCheck(55040022, 343434) should be "DE78550400220217900000"
+	fact ibanDoubleCheck(38040007, 909090) should be "DE65380400070119160000"
+
 	def iban(int blz,long konto){
 		val checkMethod=blz.checkMethod
 		subject.applyTo(new LegacyAccount(blz, konto),checkMethod.config).iban
@@ -197,6 +203,8 @@ describe Rule000500 {
 			case 37080040:"76"
 			case 70045050:"13"
 			case 50040033:"09"
+			case 55040022:"13"
+			case 38040007:"13"
 			default: throw new IllegalArgumentException("unknown blz")
 		}
 	}

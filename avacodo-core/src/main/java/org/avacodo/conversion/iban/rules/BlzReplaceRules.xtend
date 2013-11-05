@@ -194,11 +194,19 @@ package class Rule004300 extends Rule {
 	}
 }
 
+package class Rule004301 extends Rule004300 {
+	// changes already implemented in Rule004300
+}
+
 package class Rule004500 extends ReplaceRule {
 
 	override replace(RichIbanResult it) {
 		overrideBic("ESSEDE5FXXX")
 	}
+}
+
+package class Rule004501 extends Rule004500 {
+	// no change required
 }
 
 package class Rule004600 extends ReplaceRule {
@@ -224,5 +232,13 @@ package class Rule005000 extends ReplaceRule {
 	override replace(RichIbanResult it) {
 		overrideBankCode(28550000)
 		overrideBic("BRLADE21LER")
+	}
+}
+
+package class Rule005500 extends ReplaceRule {
+
+	override replace(RichIbanResult it) {
+		overrideBankCode(25410200)
+		overrideBic("BHWBDE2HXXX")
 	}
 }

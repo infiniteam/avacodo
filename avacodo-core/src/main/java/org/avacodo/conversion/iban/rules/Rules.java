@@ -34,11 +34,13 @@ enum Rules {
 	R0004_00,
 	R0005_00,
 	R0005_01,
+	R0005_02,
 	R0006_00,
 	R0007_00,
 	R0008_00,
 	R0009_00,
 	R0010_00,
+	R0010_01, // changes already implemented in Rule001000
 	R0011_00,
 	R0012_00,
 	R0012_01, // no changes, BIC can be read from bank code file
@@ -46,12 +48,14 @@ enum Rules {
 	R0013_01, // no changes, BIC can be read from bank code file
 	R0014_00,
 	R0015_00,
+	R0015_01, // changes already implemented in Rule001500
 	R0016_00,
 	R0017_00,
 	R0018_00,
 	R0019_00,
 	R0020_00,
 	R0020_01, // changes that were communicated via email by the Bundesbank on August 30, 2013
+	R0020_02, // changes already implemented in Rule002001
 	R0021_00,
 	R0021_01, // changes already implemented in Rule002100
 	R0022_00,
@@ -80,8 +84,10 @@ enum Rules {
 	R0041_00,
 	R0042_00,
 	R0043_00,
+	R0043_01, // changes already implemented in Rule004300
 	R0044_00,
 	R0045_00,
+	R0045_01,
 	R0046_00,
 	R0047_00,
 	R0048_00,
@@ -90,7 +96,9 @@ enum Rules {
 	R0051_00,
 	R0052_00,
 	R0053_00,
-	R0054_00;
+	R0054_00,
+	R0055_00,
+	R0056_00;
 
 	final Rule rule;
 

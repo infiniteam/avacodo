@@ -32,15 +32,15 @@ import static extension java.lang.Integer.*
 import static extension java.lang.Long.*
 
 package class Rule000500 extends Rule {
-	//validation rule 76 explicitly reqires the basic account to have 5, 6 or 7 digits
+	//validation rule 76 explicitly requires the basic account to have 5, 6 or 7 digits
 	//however most online validators accept accounts like 23 or 24
-	//iban calcualtion is successful as well
+	//iban calculation is successful as well
 	//ckonto (netslave) was in contact with Commerzbank and will adapt its implementation taking
 	//the length restriction into account
 
-	//the following case is still ambiguous
 	//checking a 7-digit number may be successful with and without appending 00
-	//in this case we assume, that appending 00 is not necessary
+	//in this case Commerzbank clarified in the IBAN rules of Dec. 2013 that the original
+	//unmodified account number should be used for the IBAN calculation
 
 
 	val private static final blzExclusion522='''
