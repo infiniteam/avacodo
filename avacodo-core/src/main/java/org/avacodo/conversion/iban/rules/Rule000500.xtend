@@ -269,6 +269,7 @@ package class Rule000500 extends Rule {
 		blz==10045050 || blz==50040033 ||blz==70045050
 	}
 	def package group4(Integer blz){
-		blz.toString.charAt(3).charEqual('4')
+		// not comdirect bank
+		blz.toString.charAt(3).charEqual('4') && !( blz / 100 == 200411)
 	}
 }

@@ -143,7 +143,7 @@ describe RuleBasedIbanCalculator "IbanRuleSpec"{
 	fact iban(50040033, 930125004) should throw IbanCreationImpossibleException
 
 	fact iban(20041111, 130023500) should be "DE81200411110130023500"
-	fact bic(20041111, 130023500) should be "COBADEFFXXX"
+	fact bic(20041111, 130023500) should be "COBADEHDXXX"
 
 	fact iban(37080040, 111) should be "DE69370800400215022000"
 

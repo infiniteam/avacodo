@@ -157,7 +157,7 @@ describe Rule000500 {
 	fact iban(70045050, 930125007) should throw IbanCreationImpossibleException
 
 	fact ibanDoubleCheck(20041111, 130023500) should be "DE81200411110130023500"
-	fact bic(20041111, 130023500) should be "COBADEFFXXX"
+	fact bic(20041111, 130023500) should be null
 
 	fact ibanDoubleCheck(37080040, 111) should be "DE69370800400215022000"
 
