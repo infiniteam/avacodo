@@ -106,7 +106,7 @@ class SimpleCsvConverter implements LineProcessor<Void>{
 	}
 
 	new(){
-		val url=this.class.classLoader.getResource("simplified_BLZ2_20130909.txt")
+		val url=this.class.classLoader.getResource("simplified_BLZ2.txt")
 		configs=new SimpleBankConfigReader(url, Charsets.ISO_8859_1)
 		calc=new RuleBasedIbanCalculator(configs)
 	}

@@ -49,7 +49,7 @@ class SimpleBankConfigReader implements BankConfigRepository {
 		init(Resources::readLines(blzFile, encoding))
 		ensureInitialized
 		//allows transforming bankconfig file into a simplified version containing only the relevant data
-		if("simplifiedBLZ"!=Resources::readLines(blzFile, encoding).get(0)){
+		if(!Resources::readLines(blzFile, encoding).get(0).startsWith("simplifiedBLZ")){
 //			writeSimplifiedBlz(blzFile,encoding)
 		}
 	}
@@ -76,7 +76,7 @@ class SimpleBankConfigReader implements BankConfigRepository {
 	override getBankConfig(int bankCode) {
 		val config=theMap.get(bankCode)
 		if(config===null){
-			throw new UnknownBankCodeException("unknow bank code "+bankCode)
+			throw new UnknownBankCodeException("unknown bank code "+bankCode)
 		}else{
 			config
 		}
@@ -103,7 +103,7 @@ class SimpleBankConfigReader implements BankConfigRepository {
 	def private void init(List<String> lines){
 		theMap=null
 		val result=newHashMap
-		if(lines.size>0 && lines.get(0)=="simplifiedBLZ"){
+		if(lines.size>0 && lines.get(0).startsWith("simplifiedBLZ")){
 			lines.tail.forEach[
 				if(trim.length>0){
 					val split=split(";")

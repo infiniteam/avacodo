@@ -104,10 +104,8 @@ describe RuleBasedIbanCalculator "Others"{
 	fact bic(430_000_00,12305678) should be "MARKDEF1430"
 
 	//Rule 46
-	fact iban(101_206_00,1115) should be "DE81310108330000001115"
-	fact bic(101_206_00,1115) should be "GEMKDE21BER"
 	fact iban(250_206_00,1115) should be "DE81310108330000001115"
-	fact bic(250_206_00,1115) should be "GEMKDE2HXXX"
+	fact bic(250_206_00,1115) should be "SCFBDE33XXX"
 
 	def iban(int blz, long account){
 		subject.getIban(new LegacyAccount(blz, account)).doubleCheck.iban

@@ -103,7 +103,7 @@ class CsvArgs{
 	}
 
 	def void guessIndexes(){
-		val url=this.class.classLoader.getResource("simplified_BLZ2_20130909.txt")
+		val url=this.class.classLoader.getResource("simplified_BLZ2.txt")
 		val configs=new SimpleBankConfigReader(url, Charsets.ISO_8859_1)
 		val calc=new RuleBasedIbanCalculator(configs)
 		val result=Files.readLines(file, enc, new Counter(calc, indexBlz, indexKonto))

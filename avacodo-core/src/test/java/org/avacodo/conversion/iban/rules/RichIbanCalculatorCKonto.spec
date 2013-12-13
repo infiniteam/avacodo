@@ -92,8 +92,8 @@ describe RuleBasedIbanCalculator "cKonto"{
 	fact bic(60651070,868) should be "PZHSDE66XXX"
 	fact iban(68050101,202) should be "DE51680501010002282022"
 	fact bic(68050101,202) should be "FRSPDE66XXX"
-	fact iban(10120600,1234567897) should be "DE67310108331234567897"
-	fact bic(10120600,1234567897) should be "GEMKDE21BER"
+	fact iban(25020600,1234567897) should be "DE67310108331234567897"
+	fact bic(25020600,1234567897) should be "SCFBDE33XXX"
 	fact iban(20133300,12345678) should be "DE63201333001234567800"
 	fact bic(20133300,12345678) should be "SCFBDE33XXX"
 
