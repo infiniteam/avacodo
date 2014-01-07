@@ -63,6 +63,8 @@ class BankAccountValidator {
 
     private static final LocalDate SEPT_9_2013=new LocalDate(2013,9,9);
 
+    private static final LocalDate MARCH_3_2014=new LocalDate(2014,3,3);
+
     /**
      * Check an account number of a German bank account.
      * 
@@ -325,7 +327,10 @@ class BankAccountValidator {
                     return checkMethod65( accountDigits, accountLength );
 
                 case 0x66:
-                    return checkMethod66( accountDigits, accountLength );
+               	  if( date.isBefore( MARCH_3_2014 ) ) {
+               		  return checkMethod66_0( accountDigits, accountLength );
+               	  }
+                    return checkMethod66_1( accountDigits, accountLength );
 
                 case 0x67:
                     return checkMethod67( accountDigits, accountLength );
@@ -1690,20 +1695,40 @@ class BankAccountValidator {
         return checkMethod00Alike( accountDigits, 3, accountLength, 0 );
     }
 
-    private static boolean checkMethod66(int accountDigits[], int accountLength) {
+    private static boolean checkMethod66_0(int accountDigits[], int accountLength) {
         if(accountLength > 9) {
             return false;
         }
-        
+
         int sum = 0;
         // factor 2,3,4,5,6,0,0,7
-    	for (int ix=1;ix<6;ix++){
-    	    sum += accountDigits[ix] * (ix+1);
-    	}
+    	  for (int ix=1;ix<6;ix++){
+    	      sum += accountDigits[ix] * (ix+1);
+     	  }
         sum += accountDigits[8] * 7;
-        
+
         return ((11 - sum % 11) % 10 == accountDigits[0]);
     }
+
+    // valid from March 3, 2014
+    private static boolean checkMethod66_1(int accountDigits[], int accountLength) {
+        if(accountLength > 9) {
+            return false;
+        }
+
+        if( accountDigits[8] == 9 ) {
+      	   return true;
+        }
+
+        int sum = 0;
+        // factor 2,3,4,5,6,0,0,7
+   	  for (int ix=1;ix<6;ix++){
+   	      sum += accountDigits[ix] * (ix+1);
+   	  }
+        sum += accountDigits[8] * 7;
+       
+        return ((11 - sum % 11) % 10 == accountDigits[0]);
+   }
 
     //based on 00
     private static boolean checkMethod67(int accountDigits[], int accountLength) {

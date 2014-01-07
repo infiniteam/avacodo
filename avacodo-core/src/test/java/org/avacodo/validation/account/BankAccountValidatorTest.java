@@ -65,6 +65,8 @@ public class BankAccountValidatorTest {
 
     private static final LocalDate SEPT_9_2013;
 
+    private static final LocalDate MARCH_3_2014;
+
     static {
         Calendar cal = new GregorianCalendar( 2005, Calendar.MARCH, 6 );
         cal.setTimeZone( TimeZone.getTimeZone( "CET" ) );
@@ -117,6 +119,9 @@ public class BankAccountValidatorTest {
 
         cal.set( 2013, Calendar.SEPTEMBER, 9 );
         SEPT_9_2013 = LocalDate.fromCalendarFields( cal );
+
+        cal.set( 2014, Calendar.MARCH, 3 );
+        MARCH_3_2014 = LocalDate.fromCalendarFields( cal );
     }
 
     @Test
@@ -1291,25 +1296,47 @@ public class BankAccountValidatorTest {
     }
     
     @Test
+    public void testMethod66_BeforeMarch3_2014() {
+        // from documentation
+   	 Assert.assertTrue(BankAccountValidator.checkAccountNumber(100150502L, "66", 0, SEPT_9_2013 ));
+       Assert.assertTrue(BankAccountValidator.checkAccountNumber(100154508L, "66", 0, SEPT_9_2013 ));
+       Assert.assertTrue(BankAccountValidator.checkAccountNumber(101154508L, "66", 0, SEPT_9_2013 ));
+       Assert.assertTrue(BankAccountValidator.checkAccountNumber(100154516L, "66", 0, SEPT_9_2013 ));
+       Assert.assertTrue(BankAccountValidator.checkAccountNumber(101154516L, "66", 0, SEPT_9_2013 ));
+       // others
+       Assert.assertTrue(BankAccountValidator.checkAccountNumber(123457781L, "66", 0, SEPT_9_2013 ));
+       Assert.assertTrue(BankAccountValidator.checkAccountNumber(123466780L, "66", 0, SEPT_9_2013 ));
+       Assert.assertTrue(BankAccountValidator.checkAccountNumber(110150502L, "66", 0, SEPT_9_2013 ));
+       Assert.assertFalse(BankAccountValidator.checkAccountNumber(100150501L, "66", 0, SEPT_9_2013 ));
+       Assert.assertFalse(BankAccountValidator.checkAccountNumber(100154509L, "66", 0, SEPT_9_2013 ));
+       Assert.assertFalse(BankAccountValidator.checkAccountNumber(101154507L, "66", 0, SEPT_9_2013 ));
+       Assert.assertFalse(BankAccountValidator.checkAccountNumber(100154517L, "66", 0, SEPT_9_2013 ));
+       Assert.assertFalse(BankAccountValidator.checkAccountNumber(101154515L, "66", 0, SEPT_9_2013 ));
+       Assert.assertFalse(BankAccountValidator.checkAccountNumber(1101154516L, "66", 0, SEPT_9_2013 ));
+       Assert.assertFalse(BankAccountValidator.checkAccountNumber(983393104, "66", 0, SEPT_9_2013 ));
+    }
+
+    @Test
     public void testMethod66() {
         // from documentation
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(100150502L, "66"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(100154508L, "66"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(101154508L, "66"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(100154516L, "66"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(101154516L, "66"));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(100150502L, "66", 0, MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(100154508L, "66", 0, MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(101154508L, "66", 0, MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(100154516L, "66", 0, MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(101154516L, "66", 0, MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(983393104, "66", 0, MARCH_3_2014 ));
         // others
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(123457781L, "66"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(123466780L, "66"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(110150502L, "66"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(100150501L, "66"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(100154509L, "66"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(101154507L, "66"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(100154517L, "66"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(101154515L, "66"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(1101154516L, "66"));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(123457781L, "66", 0, MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(123466780L, "66", 0, MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(110150502L, "66", 0, MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(100150501L, "66", 0, MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(100154509L, "66", 0, MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(101154507L, "66", 0, MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(100154517L, "66", 0, MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(101154515L, "66", 0, MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(1101154516L, "66", 0, MARCH_3_2014 ));
     }
-    
+
     @Test
     public void testMethod67() {
         // no test numbers in documentation
