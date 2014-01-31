@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -49,7 +49,7 @@ final class RuleBasedIbanCalculator implements IbanCalculator{
 		try{
 			val Rule r=Rules::from(config)
 			if(r===null){
-				throw new IbanCreationImpossibleException("illegal iban rule "+ config.ibanRule+" version "+config.ibanRuleVersion)
+				throw new IbanCreationImpossibleException('''illegal iban rule «config.ibanRule» version «config.ibanRuleVersion»''')
 			}
 			val RichIbanResult iban=r.applyTo(account,config , date) as RichIbanResult
 			calculateBic(iban,config,date)

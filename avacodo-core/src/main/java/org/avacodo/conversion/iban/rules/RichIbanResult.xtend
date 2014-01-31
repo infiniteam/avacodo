@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -33,7 +33,7 @@ import org.joda.time.LocalDate
 final package class RichIbanResult implements IbanResult{
 
 	private LegacyAccount legAccount
-	private boolean overrideAccout
+	private boolean overrideAccount
 	private boolean overrideBankCode
 	private boolean overrideBic
 	private String iban
@@ -56,7 +56,7 @@ final package class RichIbanResult implements IbanResult{
 		if (!suppressValidation){
 			if(!vali.checkAccountNumber(legAccount.account,method, legAccount.bankCode,date)){
 				//we cannot log the account due to security restrictions
-				throw new AccountValidationException("account validation failed, method "+method);
+				throw new AccountValidationException('''account validation failed, method «method»''');
 			}
 		}
 	}
@@ -64,7 +64,7 @@ final package class RichIbanResult implements IbanResult{
 	def package overrideAccount(long account){
 		if(legAccount.account!=account){
 			legAccount=new LegacyAccount(legAccount.bankCode,account)
-			overrideAccout=true
+			overrideAccount=true
 		}
 	}
 
@@ -112,7 +112,7 @@ final package class RichIbanResult implements IbanResult{
 	}
 	
 	override isAccountReplaced() {
-		overrideAccout
+		overrideAccount
 	}
 	
 	override isBankCodeReplaced() {

@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -36,7 +36,10 @@ class DoubleChecker {
 		val account=DeIban::accountFromIban(result.iban)
 		val r2=calculator.getIban(account)
 		if(r2.iban!=result.iban){
-			throw new IllegalStateException("double checking iban failed\n"+result.iban+"\n"+r2.iban)
+			throw new IllegalStateException(
+			'''double checking iban failed
+			«result.iban»
+			«r2.iban»''')
 		}
 		//santander replaces bankcode but uses bic of the original one
 		//hence bic cannot be obtained correctly from iban
