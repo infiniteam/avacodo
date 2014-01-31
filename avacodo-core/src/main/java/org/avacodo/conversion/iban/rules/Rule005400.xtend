@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -22,10 +22,12 @@
 package org.avacodo.conversion.iban.rules
 
 import java.util.Map
+import org.avacodo.model.BankConfig
+import org.joda.time.LocalDate
 
-package class Rule005400 extends ReplaceRule {
+package class Rule005400 extends Rule {
 	
-	private static final Map<Long,Long> replace='''
+	private static final Map<Long,Long> replaceMap=ReplaceRule.toAccountAccountMap("
 		500 500500
 		502 502502
 		18067 180670
@@ -80,11 +82,18 @@ package class Rule005400 extends ReplaceRule {
 		68796740 68796743
 		69796740 69796743
 		1761070000 176107000
-		2210531180 201053180
-	'''.toAccountAccountMap
-	
-	override replace(RichIbanResult it) {
-		defaultAccountReplace(replace)
+		2210531180 201053180");
+
+    def protected replace(RichIbanResult it) {
+		val replaceAc = replaceMap.get(account.account)
+		if (replaceAc !== null) {
+			overrideAccount(replaceAc)
+		}
 	}
-	
+
+	override applyTo(RichIbanResult it, BankConfig config, LocalDate date) {
+		replace
+		defaultApply(it, config.accountCheckMethod, date)
+	}
+
 }

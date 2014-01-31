@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -35,6 +35,7 @@ enum Rules {
 	R0005_00,
 	R0005_01,
 	R0005_02,
+	R0005_03, // changes already implemented in Rule000502
 	R0006_00,
 	R0007_00,
 	R0008_00,
@@ -97,8 +98,10 @@ enum Rules {
 	R0052_00,
 	R0053_00,
 	R0054_00,
+	R0054_01,
 	R0055_00,
-	R0056_00;
+	R0056_00,
+	R0057_00;
 
 	final Rule rule;
 

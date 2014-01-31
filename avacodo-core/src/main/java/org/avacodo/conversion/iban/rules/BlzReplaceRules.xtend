@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -240,5 +240,14 @@ package class Rule005500 extends ReplaceRule {
 	override replace(RichIbanResult it) {
 		overrideBankCode(25410200)
 		overrideBic("BHWBDE2HXXX")
+	}
+}
+
+package class Rule005700 extends ReplaceRule {
+
+	override replace(RichIbanResult it) {
+		if (account.bankCode == 50810900) {
+			overrideBankCode(66010200)
+		}
 	}
 }
