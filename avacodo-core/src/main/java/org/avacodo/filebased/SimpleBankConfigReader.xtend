@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -56,8 +56,8 @@ class SimpleBankConfigReader implements BankConfigRepository {
 
 //	def private writeSimplifiedBlz(URL url, Charset encoding) {
 //		val file=new File(url.file)
-//		println(file.absolutePath + " "+file.exists)
-//		val simpFile=new File(file.absoluteFile.parent,"simplified_"+file.name)
+//		println('''«file.absolutePath» «file.exists»''')
+//		val simpFile=new File(file.absoluteFile.parent,'''simplified_«file.name»''')
 //		if(!simpFile.exists){
 //			val sorted=theMap.keySet.sort
 //			Files::write('''
