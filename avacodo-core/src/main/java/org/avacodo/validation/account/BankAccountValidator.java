@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -64,6 +64,8 @@ class BankAccountValidator {
     private static final LocalDate SEPT_9_2013=new LocalDate(2013,9,9);
 
     private static final LocalDate MARCH_3_2014=new LocalDate(2014,3,3);
+    
+    private static final LocalDate JUNE_9_2014=new LocalDate(2014,6,9);
 
     /**
      * Check an account number of a German bank account.
@@ -405,7 +407,10 @@ class BankAccountValidator {
                     return checkMethod89( accountDigits, accountLength );
 
                 case 0x90:
-                    return checkMethod90( accountDigits, accountLength );
+               	  if( date.isBefore( JUNE_9_2014 ) ) {
+               	      return checkMethod90_0( accountDigits, accountLength );
+               	  }
+               	  return checkMethod90_1( accountDigits, accountLength );
 
                 case 0x91:
                     return checkMethod91( accountDigits, accountLength );
@@ -2207,8 +2212,8 @@ class BankAccountValidator {
         return method06CheckDigit(sum) == accountDigits[0];
     }
 
-    // based on 06
-    private static boolean checkMethod90(int accountDigits[], int accountLength) {
+    // based on 06, valid before June 9, 2014
+    private static boolean checkMethod90_0(int accountDigits[], int accountLength) {
         
         // method F (sachkonten):
         if(accountDigits[7] == 9) {
@@ -2241,6 +2246,53 @@ class BankAccountValidator {
         //method E:
         // use digits 5-9
         return checkMethod03(accountDigits, 6);
+    }
+    
+    // based on 06, valid from June 9, 2014, added method G, the rest is the same as before
+    private static boolean checkMethod90_1(int accountDigits[], int accountLength) {
+        
+        // method F (sachkonten):
+        if(accountDigits[7] == 9) {
+            return checkMethod10(accountDigits, 8);
+        }
+        
+        //method A:
+        if(checkMethod06(accountDigits, 7)) {
+            return true;
+        }    
+        //method B:
+        if(checkMethod06(accountDigits, 6)) {
+            return true;
+        }
+        //method C:
+        // use digits 5-9
+        int sum = 0;
+        for(int ix=1;ix<6;ix++) {
+            sum += accountDigits[ix] * (ix+1);
+        }
+        if ((7 - (sum % 7)) % 7 == accountDigits[0]) {
+            return true;
+        }
+
+        //method D:
+        if ((9 - (sum %9)) % 9 == accountDigits[0]) {
+            return true;
+        }
+
+        //method E:
+        // use digits 5-9
+        if (checkMethod03(accountDigits, 6)) {
+      	  return true;
+        }
+
+        //method G:
+        // use digits 4-9
+        sum = 0;
+        for(int ix=1;ix<7;ix++) {
+      	   // factor 2,1,2,1,2,1
+            sum += accountDigits[ix] * (1 + (ix % 2));
+        }
+        return (7 - (sum % 7)) % 7 == accountDigits[0];
     }
 
     //based on 06

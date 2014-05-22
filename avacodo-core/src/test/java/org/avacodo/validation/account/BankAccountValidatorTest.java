@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -66,6 +66,8 @@ public class BankAccountValidatorTest {
     private static final LocalDate SEPT_9_2013;
 
     private static final LocalDate MARCH_3_2014;
+    
+    private static final LocalDate JUNE_9_2014;
 
     static {
         Calendar cal = new GregorianCalendar( 2005, Calendar.MARCH, 6 );
@@ -122,6 +124,9 @@ public class BankAccountValidatorTest {
 
         cal.set( 2014, Calendar.MARCH, 3 );
         MARCH_3_2014 = LocalDate.fromCalendarFields( cal );
+        
+        cal.set( 2014, Calendar.JUNE, 9 );
+        JUNE_9_2014 = LocalDate.fromCalendarFields( cal );
     }
 
     @Test
@@ -1899,46 +1904,175 @@ public class BankAccountValidatorTest {
     }
     
     @Test
-    public void testMethod90() {
+    public void testMethod90_BeforeJune9_2014() {
         // from documentation
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1975641L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1988654L, "90"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(1924592L, "90"));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1975641L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1988654L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(1924592L, "90", 0,
+           MARCH_3_2014 ));
         
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(863530L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(784451L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(997664L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(863536L, "90"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(901568L, "90"));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(863530L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(784451L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(997664L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(863536L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(901568L, "90", 0,
+           MARCH_3_2014 ));
         
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(654321L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(824491L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(820484L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(654328L, "90"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(820487L, "90"));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(654321L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(824491L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(820484L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(654328L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(820487L, "90", 0,
+           MARCH_3_2014 ));
         
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(677747L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(840507L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(677742L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(726391L, "90"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(726393L, "90"));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(677747L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(840507L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(677742L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(726391L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(726393L, "90", 0,
+           MARCH_3_2014 ));
         
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(996663L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(666034L, "90"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(924591L, "90"));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(996663L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(666034L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(924591L, "90", 0,
+           MARCH_3_2014 ));
         
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(99100002L, "90"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(99100007L, "90"));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(99100002L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(99100007L, "90", 0,
+           MARCH_3_2014 ));
         // others
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111975641L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111863530L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111654321L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111840507L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111996663L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1199100002L, "90"));
-        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1199111110L, "90"));
-        Assert.assertFalse(BankAccountValidator.checkAccountNumber(1199111120L, "90"));
-    }    
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111975641L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111863530L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111654321L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111840507L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111996663L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1199100002L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1199111110L, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(1199111120L, "90", 0,
+           MARCH_3_2014 ));
+        
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(726390, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(4923250, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(3865960, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(3865964, "90", 0,
+           MARCH_3_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(465431, "90", 0,
+      	  MARCH_3_2014 ));
+    }
+
+    @Test
+    public void testMethod90() {
+   	  // all account numbers that were valid before should still be valid, additionally some more
+    	  // account numbers should be valid according to the new "method G"
+        // from documentation
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1975641L, "90", 0,
+           JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1988654L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(1924592L, "90", 0,
+      	  JUNE_9_2014 ));
+        
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1863530L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1784451L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(997664L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(863536L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(901568L, "90", 0,
+      	  JUNE_9_2014 ));
+        
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(654321L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(824491L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(820484L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(654328L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(820487L, "90", 0,
+      	  JUNE_9_2014 ));
+        
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(677747L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(840507L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(677742L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(726391L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(726393L, "90", 0,
+      	  JUNE_9_2014 ));
+        
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(996663L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(666034L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(924591L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(465431, "90", 0,
+      	  JUNE_9_2014 ));
+        
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(99100002L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(99100007L, "90", 0,
+      	  JUNE_9_2014 ));
+
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(726390, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(4923250, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(3865960, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(3865964, "90", 0,
+      	  JUNE_9_2014 ));
+
+        // others
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111975641L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111863530L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111654321L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111840507L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1111996663L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1199100002L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertTrue(BankAccountValidator.checkAccountNumber(1199111110L, "90", 0,
+      	  JUNE_9_2014 ));
+        Assert.assertFalse(BankAccountValidator.checkAccountNumber(1199111120L, "90", 0,
+      	  JUNE_9_2014 ));                
+    }
     
     @Test
     public void testMethod91() {
