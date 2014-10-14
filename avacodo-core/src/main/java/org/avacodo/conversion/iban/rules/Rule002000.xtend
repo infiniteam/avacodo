@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -41,7 +41,7 @@ package class Rule002000 extends Rule {
 
 		switch checkMethod{
 			case "63":apply63(date)
-			case "C7":applyC7(date)
+			case "C7":apply63(date)
 			default:defaultApply(checkMethod,date)
 		}
 	}
@@ -113,16 +113,6 @@ package class Rule002000 extends Rule {
 					"removed last 0 from 10 digit number ending 000");
 			}
 		}
-	}
-
-	def private applyC7(RichIbanResult it, LocalDate date){
-		if(account.bankCode==76026000){
-			val acc=account.account
-			if(validator.checkAccountNumber(acc,"06",76026000,date) && ! validator.checkAccountNumber(acc,"63",7602600,date)){
-				return creationNotPossible("rule requires successful account validation with method 63")
-			}
-		}
-		defaultApply("C7",date)
 	}
 
 	def void checkDeutscheBank(RichIbanResult it){

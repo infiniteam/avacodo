@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -129,12 +129,14 @@ describe Rule002000 {
 	fact iban(50070010,1800, _63) should throw IbanCreationImpossibleException
 
 	//C7
-	fact iban(76026000,94012341, _C7) should throw IbanCreationImpossibleException
-	fact iban(76026000,5073321010L, _C7) should throw IbanCreationImpossibleException
+	fact iban(76026000,94012341, _C7) should throw AccountValidationException
+	fact iban(76026000,5073321010L, _C7) should throw AccountValidationException
 
 
 	fact iban(76026000,1234517892, _C7) should throw AccountValidationException
 	fact iban(76026000,987614325, _C7) should throw AccountValidationException
+	
+	fact iban(76026000,5641196, _C7) should be "DE76760260000564119600"
 
 	def iban(int blz,long konto, String checkMethod){
 		val result=subject.applyTo(new LegacyAccount(blz, konto),checkMethod.config)
