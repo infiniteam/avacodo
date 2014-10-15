@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -81,12 +81,6 @@ describe RuleBasedIbanCalculator "Others"{
 	fact bic(622_501_82,2777939) should be "SOLADEST600"
 	fact iban(611_501_85,2777939) should be "DE81600501010002777939"
 	fact bic(611_501_85,2777939) should be "SOLADEST600"
-
-	//Rule 31
-	//Sparkasse: bank code old, cKonto: OK
-	fact iban(760_202_14,1500000100) should be "DE49760200701500000100"
-	fact bic(760_202_14,1500000100) should be "HYVEDEMM460"
-	
 
 	//Rule 36
 	fact iban(200_500_00,101105) should be "DE32210500000101105000"

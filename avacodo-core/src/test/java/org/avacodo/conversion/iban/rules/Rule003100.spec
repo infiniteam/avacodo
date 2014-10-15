@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -58,6 +58,9 @@ describe Rule003100 {
 
 	//H
 	fact iban(79020325, 1210100040,"99") should throw AccountValidationException
+	
+	// other
+	fact iban(76020214,1500000100, "99") should be "DE49760200701500000100"
 
 	def iban(int blz,long konto, String checkMethod){
 		val config=checkMethod.configMarkedDeleted

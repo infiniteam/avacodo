@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -83,9 +83,7 @@ describe RuleBasedIbanCalculator "cKonto"{
 	fact iban(20110700,123456) should be "DE41300107000000123456"
 	fact bic(20110700,123456) should be "BOTKDEDXXXX"
 	fact iban(25621327,1234567490) should be "DE46280200501234567490"
-	fact bic(25621327,1234567490) should be "OLBODEH2XXX"
-	fact iban(68051310,6015002) should be "DE17680523280006015002"
-	fact bic(68051310,6015002) should be "SOLADES1STF"
+	fact bic(25621327,1234567490) should be "OLBODEH2XXX"	
 	fact iban(62220000,1234567890) should be "DE96500604000000011404"
 	fact bic(62220000,1234567890) should be "GENODEFFXXX"
 	fact iban(60651070,868) should be "DE49666500850000000868"
