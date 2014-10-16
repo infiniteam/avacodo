@@ -2,7 +2,7 @@
  * #%L
  * Avacodo
  * %%
- * Copyright (C) 2013 infiniteam
+ * Copyright (C) 2013 - 2014 infiniteam
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as 
@@ -150,37 +150,12 @@ describe RuleBasedIbanCalculator "IbanRuleSpec"{
 	fact iban(50040000, 101010) should be "DE46500400000311011100"
 	fact bic(50040000, 101010) should be "COBADEFFXXX"
 
-	//from iban 31
-	//1
-	fact iban(545_200_71,6790149813L) should be "DE77545201946790149813"
-	fact bic(545_200_71,6790149813L) should be "HYVEDEMM483"
-	//2
-	fact iban(54520071, 6791000000L) should throw AccountValidationException
-	//3
-	fact iban(10120760, 897) should throw IbanCreationImpossibleException
-	
-	//A
-	fact iban(790_203_25,1210100047L) should be "DE70762200731210100047"
-	fact bic(790_203_25,1210100047L) should be "HYVEDEMM419"
-	//B
-	fact iban(700_200_01,1210100047L) should be "DE70762200731210100047"
-	fact bic(700_200_01,1210100047L) should be "HYVEDEMM419"
-	//C
-	fact iban(760_202_14,1210100047L) should be "DE70762200731210100047"
-	fact bic(760_202_14,1210100047L) should be "HYVEDEMM419"
+	//from iban 31, see also Rule003100.spec
 	//D
 	fact iban(762_200_73,1210100047L) should be "DE70762200731210100047"
 	fact bic(762_200_73,1210100047L) should be "HYVEDEMM419"
 	//E ist absolut identisch zu A
-	//F
-	fact iban(630_204_50,44613352) should throw IbanCreationImpossibleException
-	fact bic(630_204_50,44613352) should throw IbanCreationImpossibleException
-	//G
-	fact iban(660_201_50,1457032621) should be "DE92660202861457032621"
-	fact bic(660_201_50,1457032621) should be "HYVEDEMM475"
-	//H
-	fact iban(790_203_25,1210100040) should throw AccountValidationException
-	fact bic(790_203_25,1210100040) should throw AccountValidationException
+
 	//from iban 32
 	//J==D
 	//K
