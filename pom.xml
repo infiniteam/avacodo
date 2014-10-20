@@ -9,7 +9,7 @@
 
 	<groupId>org.avacodo</groupId>
 	<artifactId>avacodo-parent</artifactId>
-	<version>1.0.6-SNAPSHOT</version>
+	<version>1.0.5-RC1</version>
 
 	<packaging>pom</packaging>
 
@@ -34,7 +34,7 @@
 		<url>https://github.com/infiniteam/avacodo</url>
 		<connection>scm:git:git://github.com/infiniteam/avacodo.git</connection>
 		<developerConnection>scm:git:git@github.com:infiniteam/avacodo.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>avacodo-parent-1.0.5-RC1</tag>
 	</scm>
 
 	<developers>
