@@ -562,6 +562,8 @@ class BankAccountValidator {
                     return checkMethodE0( accountDigits, accountLength );
                 case 0xE1:
                    return checkMethodE1( accountDigits, accountLength );
+                case 0xE2:
+               	 return checkMethodE2( accountDigits, accountLength );
                 default: throw new NumberFormatException();
             }
         } catch( NumberFormatException nfe ) {
@@ -3258,6 +3260,17 @@ class BankAccountValidator {
 
 		// last digit of account number must be sum modulo 11         
 		return (sum % 11) == accountDigits[0];
+	}
+
+	/*
+	 * valid from June 8, 2015, based on 00
+	 */
+	private static boolean checkMethodE2(int accountDigits[], int accountLength) {
+		// add "438320" on the left
+		// with weight factors and cross sums: add 0 + 4 + 3 + 7 + 3 + 8 = 25
+		// take account number (without last digit), from right to left
+		// multiply digits with 2,1,2,1,...
+		return accountDigits[9] < 6 && checkMethod00Alike(accountDigits, 1, accountLength, 25);
 	}
 
 }

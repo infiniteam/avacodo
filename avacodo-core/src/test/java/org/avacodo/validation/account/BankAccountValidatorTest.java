@@ -3846,4 +3846,42 @@ public class BankAccountValidatorTest {
 		Assert.assertFalse(BankAccountValidator.checkAccountNumber(81403890, "E1"));
 	}
 
+	@Test
+	public void testMethodE2() {
+		// test numbers from documentation
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(3000260983L, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(3831745, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(51330335, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(1730773457, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(1987654327, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(2012345675, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(2220467998L, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(3190519693L, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(3011219713L, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(4131220086L, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(4110919419L, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(5000083836L, "E2"));
+		Assert.assertTrue(BankAccountValidator.checkAccountNumber(5069696965L, "E2"));
+
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(121314151, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(36958466, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(1000174716, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(1975312468, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(2260519349L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(2004002175, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(3780024149L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(3015024274L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(4968745438L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(4005012150L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(5000137454L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(5221398871L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(6221398879L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(6742185327L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(7793867322L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(7900695413L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(8001256238L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(8303808900L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(9703805111L, "E2"));
+		Assert.assertFalse(BankAccountValidator.checkAccountNumber(9006126433L, "E2"));
+	}
 }
