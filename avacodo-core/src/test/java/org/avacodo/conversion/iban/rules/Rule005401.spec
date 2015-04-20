@@ -27,7 +27,6 @@ import org.avacodo.validation.account.AccountValidationException
 import static org.junit.Assert.*
 
 import static extension org.avacodo.conversion.iban.rules.CheckMethodConfig.*
-import static extension org.avacodo.conversion.iban.rules.DoubleChecker.*
 
 describe Rule005401 {
 	before {
