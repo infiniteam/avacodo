@@ -48,12 +48,14 @@ abstract package class Rule {
 	/**
 	 * hook for doing rule specific changes to the given account, specific validation rules etc.
 	 */
+	@Deprecated
 	def package IbanResult applyTo(RichIbanResult result, BankConfig config, LocalDate date)
 
 	/**
 	 * validation is done after all replacements have taken place
 	 * if the original account must be validated do so in the applyTo method
 	 */
+	@Deprecated
 	def package final IbanResult defaultApply(RichIbanResult result, String checkMethod, LocalDate date){
 		result.validateWith(validator,checkMethod,date)
 		result.initDefaultIban

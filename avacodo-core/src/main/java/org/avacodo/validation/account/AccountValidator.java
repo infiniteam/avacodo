@@ -21,7 +21,7 @@
  */
 package org.avacodo.validation.account;
 
-import org.joda.time.*;
+import org.joda.time.LocalDate;
 
 public interface AccountValidator {
 
@@ -52,8 +52,9 @@ public interface AccountValidator {
      * @param account number
      * @param check method identifier
      * @param blz, bank code
-     * @param date indicating which version of the method is to be used
+     * @param date indicating which version of the method is to be used. Will be replaced by {@link java.time.LocalDate}
      */
+    @Deprecated
     boolean checkAccountNumber(long accountNumber, String checkMethod, int blz, LocalDate date);
 
 }

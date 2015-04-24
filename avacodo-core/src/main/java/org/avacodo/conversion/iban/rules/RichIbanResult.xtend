@@ -52,6 +52,7 @@ final package class RichIbanResult implements IbanResult{
 		legAccount
 	}
 
+	@Deprecated
 	def package validateWith(AccountValidator vali, String method, LocalDate date){
 		if (!suppressValidation){
 			if(!vali.checkAccountNumber(legAccount.account,method, legAccount.bankCode,date)){

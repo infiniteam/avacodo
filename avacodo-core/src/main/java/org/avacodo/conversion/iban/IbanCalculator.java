@@ -21,8 +21,8 @@
  */
 package org.avacodo.conversion.iban;
 
-import org.avacodo.model.*;
-import org.joda.time.*;
+import org.avacodo.model.LegacyAccount;
+import org.joda.time.LocalDate;
 
 /**
  * default implementation is RuleBasedIbanCalculator
@@ -38,5 +38,6 @@ public interface IbanCalculator {
 	 * throws an AvocadoException if (unambiguous) iban creation failed
 	 * (e.g. bank code unknown, account validation failed, ...)
 	 * */
+	@Deprecated
 	IbanResult getIban(LegacyAccount account, LocalDate date);
 }

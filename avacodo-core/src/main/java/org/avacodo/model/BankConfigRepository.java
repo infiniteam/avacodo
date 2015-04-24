@@ -21,7 +21,7 @@
  */
 package org.avacodo.model;
 
-import org.joda.time.*;
+import org.joda.time.LocalDate;
 public interface BankConfigRepository {
 
 	/**
@@ -35,8 +35,10 @@ public interface BankConfigRepository {
 	/**
 	 * must not return null
 	 * must not return bank config, if the bank code is deleted
+	 * will be replaced by a method that uses java.time.LocalData
 	 * 
 	 * @throws UnknownBankCodeException
 	 * */
+	@Deprecated
 	BankConfig getBankConfig(int bankCode, LocalDate date);
 }

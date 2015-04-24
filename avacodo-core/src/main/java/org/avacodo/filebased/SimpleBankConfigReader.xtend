@@ -85,6 +85,7 @@ class SimpleBankConfigReader implements BankConfigRepository {
 	/**
 	 * ignores the given date
 	 */
+	@Deprecated
 	override getBankConfig(int bankCode, LocalDate date) {
 		getBankConfig(bankCode)
 	}

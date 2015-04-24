@@ -24,10 +24,8 @@
  */
 package org.avacodo.validation.account;
 
-import org.joda.time.*;
-
-//import org.apache.commons.logging.Log;
-//import org.apache.commons.logging.LogFactory;
+import java.time.LocalDate;
+import java.time.Month;
 
 /**
  * implements the check digit methods for German bank accounts
@@ -37,35 +35,34 @@ import org.joda.time.*;
  */
 class BankAccountValidator {
 	private BankAccountValidator() {}
-//    static final Log log = LogFactory.getLog(BankAccountValidator.class);
     
     public static final long MIN_ACCOUNT_NUMBER = 1;
 
     public static final long MAX_ACCOUNT_NUMBER = 9999999999L;
 
-    private static final LocalDate MARCH_7_2005=new LocalDate(2005,3,7);
+	private static final LocalDate MARCH_7_2005 = LocalDate.of(2005, Month.MARCH, 7);
 
-    private static final LocalDate DEC_4_2006=new LocalDate(2006,12,4);
+	private static final LocalDate DEC_4_2006 = LocalDate.of(2006, Month.DECEMBER, 4);
 
-    private static final LocalDate MARCH_9_2009=new LocalDate(2009,3,9);
+	private static final LocalDate MARCH_9_2009 = LocalDate.of(2009, Month.MARCH, 9);
 
-    private static final LocalDate JUNE_7_2010=new LocalDate(2010,6,7);
+	private static final LocalDate JUNE_7_2010 = LocalDate.of(2010, Month.JUNE, 7);
 
-    private static final LocalDate MARCH_7_2011=new LocalDate(2011,3,7);
+	private static final LocalDate MARCH_7_2011 = LocalDate.of(2011, Month.MARCH, 7);
 
-    private static final LocalDate JUNE_6_2011=new LocalDate(2011,6,6);
+	private static final LocalDate JUNE_6_2011 = LocalDate.of(2011, Month.JUNE, 6);
 
-    private static final LocalDate SEPT_5_2011=new LocalDate(2011,9,5);
+	private static final LocalDate SEPT_5_2011 = LocalDate.of(2011, Month.SEPTEMBER, 5);
 
-    private static final LocalDate MARCH_4_2013=new LocalDate(2013,3,4);
+	private static final LocalDate MARCH_4_2013 = LocalDate.of(2013, Month.MARCH, 4);
 
-    private static final LocalDate JUNE_3_2013=new LocalDate(2013,6,3);
+	private static final LocalDate JUNE_3_2013 = LocalDate.of(2013, Month.JUNE, 3);
 
-    private static final LocalDate SEPT_9_2013=new LocalDate(2013,9,9);
+	private static final LocalDate SEPT_9_2013 = LocalDate.of(2013, Month.SEPTEMBER, 9);
 
-    private static final LocalDate MARCH_3_2014=new LocalDate(2014,3,3);
-    
-    private static final LocalDate JUNE_9_2014=new LocalDate(2014,6,9);
+	private static final LocalDate MARCH_3_2014 = LocalDate.of(2014, Month.MARCH, 3);
+
+	private static final LocalDate JUNE_9_2014 = LocalDate.of(2014, Month.JUNE, 9);
 
     /**
      * Check an account number of a German bank account.
@@ -89,16 +86,35 @@ class BankAccountValidator {
         return checkAccountNumber(accountNumber, checkMethod, blz, LocalDate.now());
     }
 
+	/**
+	 * Check an account number of a German bank account.
+	 * 
+	 * @param account
+	 *           number
+	 * @param check
+	 *           method identifier
+	 * @param blz
+	 *           , bank code, used only for a few check methods
+	 * @param date
+	 *           and time, check methods may change over the years.
+	 */
+	@Deprecated
+	public static boolean checkAccountNumber(long accountNumber, String checkMethod, int blz,
+		org.joda.time.LocalDate date) {
+		return checkAccountNumber(accountNumber, checkMethod, blz,
+			LocalDate.of(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth()));
+	}
+    
     /**
      * Check an account number of a German bank account.
      * @param account number
      * @param check method identifier
      * @param blz, bank code, used only for a few check methods
-     * @param date and time, check methods may change overthe years
+     * @param date and time, check methods may change over the years.
      */
   //ALLOW_COMPLEX
-
-    public static boolean checkAccountNumber(long accountNumber, String checkMethod, int blz, LocalDate date) {
+	public static boolean checkAccountNumber(final long accountNumber, final String checkMethod, final int blz,
+		final LocalDate date) {
         int accountLength = 0;
         int accountDigits[] = new int[10];
         int ix;
