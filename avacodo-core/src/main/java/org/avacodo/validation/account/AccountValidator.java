@@ -25,36 +25,48 @@ import org.joda.time.LocalDate;
 
 public interface AccountValidator {
 
-	AccountValidator defImpl=new AccountValidator() {
+	AccountValidator defImpl = new AccountValidator() {
 		@Override
 		public boolean checkAccountNumber(long accountNumber, String checkMethod,
-				int blz, LocalDate date) {
-			return BankAccountValidator.checkAccountNumber(accountNumber, checkMethod,blz,date);
+			int blz, LocalDate date) {
+			return BankAccountValidator.checkAccountNumber(accountNumber, checkMethod, blz, date);
 		}
 
 		@Override
 		public boolean checkAccountNumber(long accountNumber, String checkMethod,
-				int blz) {
-			return BankAccountValidator.checkAccountNumber(accountNumber, checkMethod,blz);
+			int blz) {
+			return BankAccountValidator.checkAccountNumber(accountNumber, checkMethod, blz);
 		}
 	};
 
-    /**
-     * Check an account number of a German bank account.
-     * @param account number
-     * @param check method identifier
-     * @param blz, bank code
-     */
-    boolean checkAccountNumber(long accountNumber, String checkMethod, int blz);
+	/**
+	 * Check an account number of a German bank account.
+	 * 
+	 * @param accountNumber
+	 *           account number
+	 * @param checkMethod
+	 *           check method identifier
+	 * @param blz
+	 *           BLZ, bank code
+	 * @return true if check succeeded
+	 */
+	boolean checkAccountNumber(long accountNumber, String checkMethod, int blz);
 
-    /**
-     * Check an account number of a German bank account.
-     * @param account number
-     * @param check method identifier
-     * @param blz, bank code
-     * @param date indicating which version of the method is to be used. Will be replaced by {@link java.time.LocalDate}
-     */
-    @Deprecated
-    boolean checkAccountNumber(long accountNumber, String checkMethod, int blz, LocalDate date);
+	/**
+	 * Check an account number of a German bank account.
+	 * 
+	 * @param accountNumber
+	 *           account number
+	 * @param checkMethod
+	 *           check method identifier
+	 * @param blz
+	 *           BLZ, bank code
+	 * @param date
+	 *           date indicating which version of the method is to be used. Will be replaced by
+	 *           {@link java.time.LocalDate}
+	 * @return true if check succeeded
+	 */
+	@Deprecated
+	boolean checkAccountNumber(long accountNumber, String checkMethod, int blz, LocalDate date);
 
 }
